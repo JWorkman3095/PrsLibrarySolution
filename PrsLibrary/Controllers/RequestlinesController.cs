@@ -18,15 +18,15 @@ namespace PrsLibrary.Controllers {
 
         public IEnumerable<Requestlines> GetAll() {
             return _context.Requestlines
-                                .Include(x => x.Product)
-                                .Include(x => x.Request)
-                                .ToList();
+                                //.Include(x => x.Product)
+                                //.Include(x => x.Request)
+                                //.ToList();
         }
 
         public Requestlines GetByPk(int id) {
             return _context.Requestlines
-                                .Include(x => x.Product)
-                                .Include(x => x.Request)
+                                //.Include(x => x.Product)
+                                //.Include(x => x.Request)
                                 .SingleOrDefault(x => x.Id == id);
         }
 
@@ -38,7 +38,7 @@ namespace PrsLibrary.Controllers {
                 throw new ArgumentNullException("Requestline.Id must be zero!");
             }
 
-            _context.Requestlines.Add(requestline); // puts it into the Ef cach (editing to make sure (above))
+            //_context.Requestlines.Add(requestline); // puts it into the Ef cach (editing to make sure (above))
             _context.SaveChanges();
             return requestline;
         }
@@ -46,7 +46,7 @@ namespace PrsLibrary.Controllers {
             _context.SaveChanges();
         }
         public void Remove(int id) {
-            var requestline = _context.Requestlines.Find(id);
+            var requestline = new RequestLine(); // _context.Requestlines.Find(id);
             if (requestline is null) {
                 throw new Exception("Product not found!");
             }

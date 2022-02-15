@@ -20,6 +20,15 @@ namespace PrsLibrary.Controllers {
             return _context.Requests.Include(x => x.User).ToList();
         }
 
+        public void SetReview(Request request) {
+            if(request.Total <= 50) {
+                request.Status = "APPROVED";
+            } else {
+                request.Status = "REVIEW";
+            }
+            Change(request);
+        }
+
         public Request GetByPk(int id) {
             return _context.Requests.Find(id);
         }
