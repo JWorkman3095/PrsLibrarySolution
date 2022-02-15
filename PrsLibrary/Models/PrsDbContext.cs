@@ -15,6 +15,7 @@ namespace PrsLibrary.Models {
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<RequestLine> RequestLines { get; set; }
+        public object Requestlines { get; internal set; }
 
         //contructors
         //default contructor
@@ -38,7 +39,7 @@ namespace PrsLibrary.Models {
             builder.Entity<Vendor>(e => {
                 e.HasIndex(p => p.Code).IsUnique(true); // true is default so could leave blank                                            
             });
-            builder.Entity<Product>(e => {
+            builder.Entity<Requestlines>(e => {
                 e.HasIndex(p => p.PartNbr).IsUnique(true); // true is default so could leave blank                                            
             });
 
