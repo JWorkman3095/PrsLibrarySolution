@@ -15,6 +15,7 @@ namespace PrsLibrary.Controllers {
         public ProductsController(PrsDbContext context) {
             this._context = context;
         }
+
         public IEnumerable<Product> GetAll() {
             return _context.Products.Include(x => x.Vendor).ToList();
         }

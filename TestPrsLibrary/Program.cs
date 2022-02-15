@@ -7,24 +7,33 @@ namespace TestPrsLibrary {
 
     class Program {
 
-        static void Print(Requestlines product) {
-            Console.WriteLine($"{product.Id,-5} {product.PartNbr,-12} {product.Name,-12} {product.Price,10:c} {product.Vendor.Name,-15}");
-        }
+        //static void Print(Requestlines product) {
+        //    Console.WriteLine($"{product.Id,-5} {product.PartNbr,-12} {product.Name,-12} {product.Price,10:c} {product.Vendor.Name,-15}");
+        //}
 
         static void Main(string[] args) {
 
 
             var context = new PrsDbContext();
 
-            var reqCtrl = new RequestsController(context);
+            var reqlCtrl = new RequestlinesController(context);
 
-            var req = reqCtrl.GetByPk(1);
+            var reql = reqlCtrl.GetByPk(1);
+            reql.Quantity = 2;
+            reqlCtrl.Change(reql);
 
-            reqCtrl.SetReview(req);
+            //var reqCtrl = new RequestsController(context);
 
-            req = reqCtrl.GetByPk(1);
+            //var req = reqCtrl.GetByPk(1);
 
-            Console.WriteLine($"{req.Description} {req.Status} {req.Total}");
+            //reqCtrl.SetReview(req);
+
+            //reqCtrl.SetRejected(req);
+            //reqCtrl.SetApproved(req);
+
+            //req = reqCtrl.GetByPk(1);
+
+            //Console.WriteLine($"{req.Description} {req.Status} {req.Total}");
 
 
 
