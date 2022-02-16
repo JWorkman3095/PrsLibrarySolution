@@ -1,8 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations; //only had these in here
+using System.ComponentModel.DataAnnotations.Schema; // only had these in here
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PrsLibrary.Models {
+
     public class Product {
+
         public int Id { get; set; }
         [Required, StringLength(30)]
         public string PartNbr { get; set; }
@@ -19,5 +26,7 @@ namespace PrsLibrary.Models {
         // virtual instance required for EF to 
         // recogize FK
         public virtual Vendor Vendor { get; set; }
+
+        public Product() { } //added
     }
 }

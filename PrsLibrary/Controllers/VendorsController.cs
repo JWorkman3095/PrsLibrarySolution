@@ -1,4 +1,5 @@
 ﻿using PrsLibrary.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,19 +26,22 @@ namespace PrsLibrary.Controllers {
         }
         //passes up all the vendor instance adding it to the dB
         public Vendor Create(Vendor vendor) {
-            if (vendor is null) {
-                throw new ArgumentNullException("vendor");
-            }
-            if (vendor.Id != 0) {
-                throw new ArgumentNullException("Vendor.Id must be zero");
-            }
+            //if (vendor is null) {
+            //    throw new ArgumentNullException("vendor");
+            //}
+            //if (vendor.Id != 0) {
+            //    throw new ArgumentNullException("Vendor.Id must be zero");
+            //}
             _context.Vendors.Add(vendor); // puts it into the Ef cach (editing to make sure (above))
             _context.SaveChanges();
+
             return vendor;
         }
+
         public void Change(Vendor vendor) {
             _context.SaveChanges();
         }
+
         public void Remove(int id) {
             var vendor = _context.Vendors.Find(id);
             if (vendor is null) {

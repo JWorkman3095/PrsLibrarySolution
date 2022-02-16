@@ -26,7 +26,7 @@ namespace PrsLibrary.Controllers {
                              where rl.RequestId == requestId  // only want the ones tied to the particular request
                              select new { 
                                  LineTotal = rl.Quantity * p.Price // linetotal is the alias for each line item on the request
-                             }).Sum(x = x.LineTotal); // wrap everthing in () to call sum method to tally up all line totals
+                             }).Sum(x => x.LineTotal); // wrap everthing in () to call sum method to tally up all line totals
             _context.SaveChanges();
         }
 
@@ -54,12 +54,12 @@ namespace PrsLibrary.Controllers {
 
             _context.RequestLines.Add(requestline); // puts it into the Ef cach (editing to make sure (above))
             _context.SaveChanges();
-            //RecalculateRequestTotal(requestline.RequestId);
+            RecalculateRequestTotal(requestline.RequestId);
             return requestline;
         }
         public void Change(Requestline requestline) {
             _context.SaveChanges();
-            //RecalculateRequestTotal(requestline.RequestId);
+            RecalculateRequestTotal(requestline.RequestId);
         }
         public void Remove(int id) {
             var requestline = _context.RequestLines.Find(id);
@@ -68,7 +68,7 @@ namespace PrsLibrary.Controllers {
             }
             _context.RequestLines.Remove(requestline);
             _context.SaveChanges();
-            //RecalculateRequestTotal(requestline.RequestId);
+            RecalculateRequestTotal(requestline.RequestId);
 
         }
     }

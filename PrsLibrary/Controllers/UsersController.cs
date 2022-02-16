@@ -1,4 +1,5 @@
 ﻿using PrsLibrary.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,24 +20,22 @@ namespace PrsLibrary.Controllers {
             return _context.Users
                     .SingleOrDefault(x => x.UserName == username
                                         && x.Password == password);
-
         }
-
-               // passing back a list using IEnumerable allows flexiblity to get all the users from the dB
+        // passing back a list using IEnumerable allows flexiblity to get all the users from the dB
         public IEnumerable<User> GetAll() {
             return _context.Users.ToList();
         }
-        //method to read by PK - returnthe instance or null
+        //method to read by PK - return the instance or null
         public User GetByPk(int id) {
             return _context.Users.Find(id);
         }
 
         public User Create(User user) {
-            if(user is null) {
+            if (user is null) {
                 throw new ArgumentNullException("user");
             }
-            if(user.Id != 0) {
-                throw new ArgumentNullException("User.Id must be zero");
+            if (user.Id != 0) {
+                throw new ArgumentException("User.Id must be zero!");
             }
             _context.Users.Add(user);
             _context.SaveChanges();

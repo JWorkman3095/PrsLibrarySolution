@@ -27,7 +27,7 @@ namespace PrsLibrary.Models {
         public bool IsAdmin { get; set; }
 
         //constructor
-        public User() { }
+        //public User() { } not in GO
 
     }
 }

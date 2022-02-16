@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace PrsLibrary.Models {
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Requestline> RequestLines { get; set; }
-        public object Requestlines { get; internal set; }
+        //public object Requestlines { get; internal set; } //this was not in GO
 
         //contructors
         //default contructor

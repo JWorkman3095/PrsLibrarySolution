@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using PrsLibrary.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +18,47 @@ namespace PrsLibrary.Controllers {
             this._context = context;
 
         }
+        public IEnumerable<Request> GetRequestsInReview(int userId) {
+            var requests = _context.Requests
+                                        .Where(x => x.Status == "REVIEW"
+                                                && x.UserId != userId)
+                                        .ToList();
+            return requests;
+        }
+
+        public void SetRejected(Request request) {
+            request.Status = "REJECTED";
+            Change(request);
+        }
+
+        public void SetApproved(Request request) {
+            request.Status = "APPROVED";
+            Change(request);
+        }
+
+        public void SetReview(Request request) {
+            if (request.Total <= 50) {
+                request.Status = "APPROVED";
+            } else {
+                request.Status = "REVIEW";
+            }
+            Change(request);
+        }
+
         public IEnumerable<Request> GetAll() {
             return _context.Requests.Include(x => x.User).ToList();
         }
-        
+
         public Request GetByPk(int id) {
-            return _context.Requests.Find(id);
+            return _context.Requests.Include(x => x.User)
+                                .SingleOrDefault(x => x.Id == id);
         }
         public Request Create(Request Request) {
             if (Request is null) {
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException("Request");
             }
             if (Request.Id != 0) {
-                throw new ArgumentNullException("Request.Id must be zero");
+                throw new ArgumentNullException("Request.Id must be zero!");
             }
 
             _context.Requests.Add(Request); // puts it into the Ef cach (editing to make sure (above))
