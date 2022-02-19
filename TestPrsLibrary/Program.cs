@@ -8,9 +8,9 @@ namespace TestPrsLibrary {
 
     class Program {
 
-        static void Print(Product product) {
-            Console.WriteLine($"{product.Id,-5} {product.PartNbr,-12} {product.Name,-12} {product.Price,10:c} {product.Vendor.Name,-15}");
-        }
+        //static void Print(Product product) {
+        //    Console.WriteLine($"{product.Id,-5} {product.PartNbr,-12} {product.Name,-12} {product.Price,10:c} {product.Vendor.Name,-15}");
+        //}
 
         static void Main(string[] args) {
 
@@ -57,14 +57,14 @@ namespace TestPrsLibrary {
 
 
 
-            var username = "gdoud";
-            var password = "password";
-            context.Users.SingleOrDefault(x => x.UserName == username && x.Password == password);
-            //SingleOrDefault instead of a where claus which  brings back a collection
+           // var username = "gdoud";
+           // var password = "password";
+           // context.Users.SingleOrDefault(x => x.UserName == username && x.Password == password);
+           // SingleOrDefault instead of a where claus which brings back a collection
 
-            var user = from u in context.Users
-                       where u.UserName == username && u.Password == password
-                       select u;
+           //var user = from u in context.Users
+           //           where u.UserName == username && u.Password == password
+           //           select u;
 
 
             //here for comparing GO
@@ -147,14 +147,14 @@ namespace TestPrsLibrary {
             //    Console.WriteLine($"User33: {user33.Firstname} {user33.Lastname}");
             //}
 
-            ////userCtrl.Remove(8);
-            ////vendorCtrl.Remove(3);
+            //userCtrl.Remove(8);
+            //vendorCtrl.Remove(3);
 
-            //var users = userCtrl.GetAll();
-            //foreach (var user in users) {
-            //    Console.WriteLine($"{user.Id} {user.Firstname} {user.Lastname}");
-            //}
-            //Console.WriteLine($" "); // only for space between these two cw's
+            var users = userCtrl.GetAll();
+            foreach (var user in users) {
+                Console.WriteLine($"{user.Id} {user.Firstname} {user.Lastname}");
+            }
+            Console.WriteLine($" "); // only for space between these two cw's
 
             //var vendors = vendorCtrl.GetAll();
             //foreach (var vendor in vendors) {
