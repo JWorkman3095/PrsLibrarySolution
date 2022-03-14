@@ -12,11 +12,11 @@ public class User {
 	@Column(columnDefinition="int")
 	private int Id;
 	@Column(length=30, nullable=false)
-	private String UserName;
+	private String Username;
 	@Column(length=30, nullable=false)
 	private String Password;
 	@Column(length=30, nullable=false)
-	private String FirstName;
+	private String Firstname;
 	@Column(length=30, nullable=false)
 	private String LastName;
 	@Column(length=12, nullable=true)
@@ -36,12 +36,12 @@ public class User {
 		Id = id;
 	}
 
-	public String getUserName() {
-		return UserName;
+	public String getUsername() {
+		return Username;
 	}
 
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setUsername(String username) {
+		Username = username;
 	}
 
 	public String getPassword() {
@@ -52,12 +52,12 @@ public class User {
 		Password = password;
 	}
 
-	public String getFirstName() {
-		return FirstName;
+	public String getFirstname() {
+		return Firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		FirstName = firstName;
+	public void setFirstname(String firstname) {
+		Firstname = firstname;
 	}
 
 	public String getLastName() {
@@ -99,6 +99,4 @@ public class User {
 	public void setIsAdmin(boolean isAdmin) {
 		IsAdmin = isAdmin;
 	}
-	
-	
 }
